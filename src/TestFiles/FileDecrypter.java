@@ -1,4 +1,4 @@
-package intro_to_file_io;
+package TestFiles;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

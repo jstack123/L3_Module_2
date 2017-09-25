@@ -1,4 +1,4 @@
-package intro_to_file_io;
+package TestFiles;
 
 import java.io.FileWriter;
 import java.io.IOException;
