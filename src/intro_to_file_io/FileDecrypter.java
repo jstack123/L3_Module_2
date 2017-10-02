@@ -44,3 +44,4 @@ public class FileDecrypter {
 			System.out.println(decrpytedMessage);
 		}
 	}
+Copyright © 2017 by Joey Stack

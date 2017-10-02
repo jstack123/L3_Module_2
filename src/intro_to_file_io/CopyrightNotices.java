@@ -6,8 +6,8 @@ import java.io.IOException;
 public class CopyrightNotices {
 	public static void main(String[] args) {
 		try {
-			FileWriter fw = new FileWriter("src/TestFiles/FileDecrypter", true);
-			fw.write("Copyright © 2017 by Joey Stack");
+			FileWriter fw = new FileWriter("src/TestFiles/FileDecrypter.java", true);
+			fw.write("//Copyright © 2017 by Joey Stack");
 
 			fw.close(); 
 		} catch (IOException e) {
