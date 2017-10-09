@@ -2,6 +2,9 @@ package intro_to_file_io;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ public class ToDoListTracker implements ActionListener {
 	JButton removeTask;
 	JButton save;
 	JButton load;
+	
 	ArrayList<String> list = new ArrayList<String>();
 	String task;
 	FileWriter fw;
@@ -50,14 +54,45 @@ public class ToDoListTracker implements ActionListener {
 	public void dateToFile() {
 		try {
 			fw = new FileWriter("src/intro_to_file_io/listFile.txt");
+			listArray = "";
 			for (int i = 0; i < list.size(); i++) {
 				listArray += list.get(i) +"\n";
 			}
 			fw.write(listArray);
+			
+			fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void loadTask() {
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("src/intro_to_file_io/listFile.txt"));
+			String load = "";
+			String line = br.readLine();
+			while(line != null){
+				System.out.println(line);
+				load+=line + "\n";
+				list.add(line);
+				line = br.readLine();
+				//System.out.println(line);
+			}
+			br.close();
+			JOptionPane.showMessageDialog(null, load );
+
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	@Override
@@ -74,7 +109,11 @@ public class ToDoListTracker implements ActionListener {
 		}
 		
 		if (e.getSource().equals(save)) {
-		
+			dateToFile();
+			System.out.println(fw);
+		}
+		if (e.getSource().equals(load)) {
+			loadTask();
 		}
 		System.out.println(list);
 	}
