@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -67,6 +68,13 @@ public class ToDoListTracker implements ActionListener {
 		}
 		
 	}
+	String fileName = "";
+	public void removeTask() {
+		String typedTaskNumber = JOptionPane.showInputDialog("Choose which task you would like to delete by \nentering the task number in the space below, where 0 is the first task entered.");
+		int taskNum = Integer.parseInt(typedTaskNumber);
+		System.out.println(taskNum);
+		list.remove(taskNum);
+	}
 	
 	public void loadTask() {
 		BufferedReader br;
@@ -101,11 +109,15 @@ public class ToDoListTracker implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getSource().equals(addTask)) {
 			task = JOptionPane.showInputDialog("Type a task in the space below.");
-			list.add(task);
+			if (task.length()>0) {
+				list.add(task);
+			}
+		
 		}
 
 		if (e.getSource().equals(removeTask)) {
-			list.remove(0);
+			removeTask();
+			
 		}
 		
 		if (e.getSource().equals(save)) {
